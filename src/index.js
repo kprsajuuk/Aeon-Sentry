@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+
+import HomePage from '@/pages/homepage/HomePage';
+
+import './initiate.scss';
+import './index.scss';
 
 class AeonComponent extends Component {
 
-    test = () => {
-        fetch(`http://localhost:8077/login/`, {
-            credentials: 'include'
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
-    }
-
     render() {
         return (
-            <div>
-                <button onClick={this.test}>abc</button>
-                Aeon
+            <div className="main">
+                <Router basename={'/'}>
+                    <Switch>
+                        <Route exact path='/' component={HomePage}/>
+                    </Switch>
+                </Router>
             </div>
         )
     }
