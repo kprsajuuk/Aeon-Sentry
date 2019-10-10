@@ -30,13 +30,13 @@ class HomePage extends Component {
 
     render(){
         return (
-            <div className='space'>
-                <div className='absolute-mid login-form'>
-                    <div>I AM LOGO</div>
+            <div className='flex-mid'>
+                <div style={{width: 200, textAlign: 'center'}}>
+                    <div style={{marginBottom: 10}}>I AM LOGO</div>
                     {this.state.step === 'main' &&
                     <div>
-                        <div onClick={()=>this.changeStep('log')}>登录</div>
-                        <div onClick={()=>this.changeStep('reg')}>注册</div>
+                        <Button onClick={()=>this.changeStep('log')}>登录</Button>
+                        <Button onClick={()=>this.changeStep('reg')}>注册</Button>
                     </div>}
                     {this.state.step === 'log' &&
                     <Login back={()=>this.changeStep('main')}/>}

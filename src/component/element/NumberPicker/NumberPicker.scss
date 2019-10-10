@@ -1,0 +1,20 @@
+.as-np{
+  display: inline-block;
+  &-box{
+    display: flex;
+  }
+  &-num{
+    background: #454545;
+    border: 1px solid #666;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+  }
+
+  &-icon{
+    height: 30px;
+    width: 20px;
+    cursor: pointer;
+  }
+}

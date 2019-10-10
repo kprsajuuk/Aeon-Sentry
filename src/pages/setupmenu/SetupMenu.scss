@@ -1,0 +1,14 @@
+.as-sm{
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  &-container{
+    background: #4a4a4a;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}

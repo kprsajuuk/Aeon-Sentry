@@ -1,0 +1,41 @@
+.as-modal{
+  &-content{
+    padding: 20px;
+    min-height: 100px;
+    min-width: 200px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    -ms-transform: translate(-50%, -50%) scale(0.7);	  /* IE 9 */
+    -moz-transform: translate(-50%, -50%) scale(0.7);	  /* Firefox */
+    -webkit-transform: translate(-50%, -50%) scale(0.7); /* Safari 和 Chrome */
+    -o-transform: translate(-50%, -50%) scale(0.7);      /* Opera */
+  }
+
+  &-overlay {
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.as-modal.visible .as-modal-trans {
+  transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);	  /* IE 9 */
+  -moz-transform: translate(-50%, -50%) scale(1);	  /* Firefox */
+  -webkit-transform: translate(-50%, -50%) scale(1); /* Safari 和 Chrome */
+  -o-transform: translate(-50%, -50%) scale(1);      /* Opera */
+  opacity: 1;
+}
+
+.as-modal-trans {
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
