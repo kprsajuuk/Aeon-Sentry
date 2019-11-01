@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomePage from '@/pages/homepage/HomePage';
+import Login from '@/pages/homepage/login/Login';
+import Register from '@/pages/homepage/register/Register';
 import SetupMenu from '@/pages/setupmenu/SetupMenu';
+import MainStage from '@/pages/mainstage/MainStage';
 
 import './initiate.scss';
 import './index.scss';
@@ -16,7 +19,10 @@ class AeonComponent extends Component {
                 <Router basename={'/'}>
                     <Switch>
                         <Route exact path='/' component={HomePage}/>
+                        <Route path='/login' component={Login}/>
+                        <Route path='/register' component={Register}/>
                         <Route path='/setup' component={SetupMenu}/>
+                        <Route path='/floor' component={MainStage}/>
                     </Switch>
                 </Router>
             </div>
@@ -24,4 +30,4 @@ class AeonComponent extends Component {
     }
 }
 
-ReactDOM.render(<AeonComponent />, document.getElementById('root'))
+ReactDOM.render(<AeonComponent />, document.getElementById('root'));

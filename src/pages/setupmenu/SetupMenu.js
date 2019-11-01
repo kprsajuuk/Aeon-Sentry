@@ -5,7 +5,7 @@ import './SetupMenu.scss';
 class SetupMenu extends Component {
     state = {
         section: 'character',
-    }
+    };
 
     componentDidMount(){
     }
@@ -14,11 +14,11 @@ class SetupMenu extends Component {
         this.setState({
             section: sec,
         })
-    }
+    };
 
     complete = () => {
 
-    }
+    };
 
     render(){
         return (

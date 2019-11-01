@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.join(__dirname, 'src/index.js'),
@@ -27,7 +28,12 @@ module.exports = {
             use: ['style-loader', 'css-loader']
         },{
             test: /\.(png|svg|jpg|gif)$/,
-            use: ['file-loader']
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    publicPath: '/dist/'
+                }
+            }]
         },{
             test: /\.scss$/,
             exclude: [
@@ -42,9 +48,15 @@ module.exports = {
             }]
         }]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            favicon: './public/favicon.ico' // favicon.ico路径
+        })
+    ],
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
+        contentBase: path.resolve(__dirname, 'public'),
         port: 8066,
+        publicPath: 'http://localhost:8077/dist',
         proxy: {
             '/': {
                 target: 'http://localhost:8077',
@@ -57,4 +69,4 @@ module.exports = {
             }
         }
     }
-}
+};

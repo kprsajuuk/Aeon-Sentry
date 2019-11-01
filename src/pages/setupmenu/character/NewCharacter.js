@@ -3,13 +3,14 @@ import { Button, NumberPicker, Input } from '@/component/element/element';
 import './NewCharacter.scss';
 
 const infojson = [{title: '名称', data: ''}, {title: '年龄', data: ''}, {title: '婚姻状态', data: ''},
-    {title: '托福成绩', data: ''}];
+    {title: '托福成绩', data: ''},{title: '武器', data: ''}];
 
 class NewCharacter extends Component {
     state = {
+        name: undefined,
         totalPoint: 10,
         attributes: {att: 3, def: 3, spe: 3, ran: 3, mag: 3},
-    }
+    };
 
     componentDidMount(){
     }
@@ -24,10 +25,39 @@ class NewCharacter extends Component {
             attributes,
             totalPoint,
         })
-    }
+    };
+
+    nameUpdate = (name) => {
+        this.setState({
+            name: name,
+        })
+    };
+
+    complete = () => {
+        const { attributes } = this.state;
+        let formData = new FormData();
+        formData.append('name', this.state.name);
+        formData.append('attack', attributes.att);
+        formData.append('defense', attributes.def);
+        formData.append('speed', attributes.spe);
+        formData.append('range', attributes.ran);
+        formData.append('magic', attributes.mag);
+        formData.append('comment', 'something here');
+        fetch(`/createHero/`, {
+            method: 'post',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.success){
+                    console.log('success');
+                }
+            })
+    };
 
     render(){
-        const { attributes } = this.state
+        const { attributes } = this.state;
         return (
             <div>
                 <div style={{display: 'flex'}}>
@@ -58,10 +88,14 @@ class NewCharacter extends Component {
                     <div style={{padding: 16}}>
                         <div>资料信息</div>
                         <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap'}}>
+                            <div className='as-nc-info'>
+                                <span style={{paddingRight: 12}}>名称</span>
+                                <Input onChange={this.nameUpdate} style={{width: 100}}/>
+                            </div>
                         {
-                            infojson.map((item) => {
+                            infojson.map((item, index) => {
                                 return (
-                                    <div className='as-nc-info'>
+                                    <div key={index} className='as-nc-info'>
                                         <span style={{paddingRight: 12}}>{item.title}</span>
                                         <Input style={{width: 100}}/>
                                     </div>
@@ -72,7 +106,7 @@ class NewCharacter extends Component {
                     </div>
                 </div>
                 <div style={{textAlign: 'center'}}>
-                <Button>Complete</Button>
+                    <Button onClick={this.complete}>Complete</Button>
                 </div>
             </div>
         )

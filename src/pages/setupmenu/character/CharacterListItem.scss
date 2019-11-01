@@ -1,0 +1,16 @@
+.cli{
+  padding: 16px;
+  text-align: left;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover{
+    color: #e5ce00;
+  }
+  &.selected{
+    background: #333;
+    color: #e5ce00;
+  }
+  &-attr{
+    display: flex;
+  }
+}
