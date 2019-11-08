@@ -10,8 +10,12 @@ class CharacterListItem extends Component {
     componentDidMount(){
     }
 
+    /**
+     *
+     * @param data {{avatar_id: string}} - 角色id
+     */
     getCharacterId(){
-        return this.state.data.id;
+        return this.state.data.avatar_id;
     }
 
     unSelect(){

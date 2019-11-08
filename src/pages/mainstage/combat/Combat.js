@@ -25,13 +25,16 @@ class Combat extends Component {
 
     render(){
         return (
-            <div>
-                <div>
+            <div className='combat-main'>
+                <div className='combat-enemy'>
                     <div>血量: {this.state.enemy['hp']}</div>
-                    MuyiShen4 boss专用图.jpg
+                    <div className='combat-enemy-avatar'>MuyiShen4 boss专用图.jpg</div>
+                    <div>{this.state.enemy.description}</div>
                 </div>
-                <div>
-                    <Button onClick={()=>this.onAction('attack')}>攻击</Button>
+                <div className='combat-action'>
+                    <Button disabled={!this.props.ready} onClick={()=>this.onAction('attack')}>攻击</Button>
+                    <Button disabled={!this.props.ready} onClick={()=>this.onAction('dodge')}>闪避</Button>
+                    <Button disabled={!this.props.ready} onClick={()=>this.onAction('charge')}>蓄力</Button>
                 </div>
             </div>
         )

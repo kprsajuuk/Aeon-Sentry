@@ -49,8 +49,11 @@ class NewCharacter extends Component {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                /**
+                 * @method onComplete: void - 创建成功
+                 */
                 if (data.success){
+                    this.props.onComplete();
                     console.log('success');
                 }
             })

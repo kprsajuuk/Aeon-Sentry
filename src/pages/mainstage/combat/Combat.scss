@@ -1,0 +1,16 @@
+.combat{
+  &-enemy{
+    margin: 10px;
+    &-avatar{
+      border: 1px solid #ccc;
+      min-height: 200px;
+      min-width: 300px;
+      text-align: center;
+    }
+  }
+
+  &-action{
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -13,6 +13,10 @@ class LoadCharacter extends Component {
         /**
          * @param res {{avatars: json}} - 角色信息.
          */
+        this.loadAllHero();
+    }
+
+    loadAllHero = () => {
         fetch(`/loadAllHero/`)
             .then(res => res.json())
             .then(res => {
@@ -25,7 +29,7 @@ class LoadCharacter extends Component {
     }
 
     onSelect = (item) => {
-        if (this.state.selectedChar){
+        if (this.state.selectedChar && this.state.selectedChar !== item){
             this.state.selectedChar.unSelect();
         }
         this.setState({
@@ -43,7 +47,7 @@ class LoadCharacter extends Component {
             .then(res => res.json())
             .then(res => {
                 if (res.success){
-                    console.log(res);
+                    window.location.href="/floor";
                 }
             })
         return;
