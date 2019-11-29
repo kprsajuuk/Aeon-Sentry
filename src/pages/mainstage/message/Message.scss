@@ -1,0 +1,11 @@
+.message{
+  &-main{
+    text-align: center;
+  }
+
+  &-content{
+    & .msg{
+      line-height: 40px;
+    }
+  }
+}

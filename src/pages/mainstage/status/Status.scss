@@ -1,0 +1,33 @@
+.hero{
+  &-status{
+    width: 200px;
+    position: relative;
+    line-height: 30px;
+  }
+  &-title{
+    color: #f0f8ff;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+  }
+  &-hp{
+    line-height: 20px;
+    background: #8b0000;
+    overflow: hidden;
+    &-bar{
+      text-align: center;
+      white-space: nowrap;
+      background: #43CD80;
+      color: #f0f8ff;
+    }
+  }
+  &-attr{
+    display: flex;
+    justify-content: space-between;
+  }
+  &-des{
+    color: #f0f8ff;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

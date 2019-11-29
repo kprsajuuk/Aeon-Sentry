@@ -1,0 +1,51 @@
+.map{
+  display: flex;
+  width: 400px;
+  height: 400px;
+  flex-wrap: wrap;
+}
+.room{
+  &-box{
+    box-sizing: border-box;
+    height: 78px;
+    width: 78px;
+    border: 1px solid #333;
+  }
+  &-main{
+    background: #333;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    left: 14px;
+    top: 14px;
+    &-user{
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background: green;
+    }
+  }
+}
+
+.path{
+  background: #333;
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  &.t{
+    top: -14px;
+    left: 18px;
+  }
+  &.r{
+    top: 18px;
+    right: -14px;
+  }
+  &.b{
+    bottom: -14px;
+    left: 18px;
+  }
+  &.l{
+    top: 18px;
+    left: -14px;
+  }
+}

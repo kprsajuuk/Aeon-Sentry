@@ -10,6 +10,15 @@ class CharacterListItem extends Component {
     componentDidMount(){
     }
 
+    componentDidUpdate(prevProps){
+        if (this.props.data !== prevProps.data){
+            this.setState({
+                data: this.props.data || {},
+                selected: false,
+            });
+        }
+    }
+
     /**
      *
      * @param data {{avatar_id: string}} - 角色id

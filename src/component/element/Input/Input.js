@@ -9,8 +9,10 @@ class Input extends Component {
     }
 
     changeValue = (e) => {
-        this.props.onChange(e.target.value)
-    }
+        if (this.props.onChange){
+            this.props.onChange(e.target.value);
+        }
+    };
 
     render(){
         return (

@@ -1,0 +1,19 @@
+.move{
+  &-btn{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    &.t{
+      top: -40px;
+    }
+    &.r{
+      left: 40px;
+    }
+    &.b{
+      top: 40px;
+    }
+    &.l{
+      left: -40px;
+    }
+  }
+}

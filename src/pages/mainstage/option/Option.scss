@@ -1,0 +1,22 @@
+.option{
+  &-main{
+    text-align: center;
+  }
+
+  &-selection{
+    display: flex;
+    justify-content: space-around;
+    & .item{
+      cursor: pointer;
+      padding: 20px;
+      &:hover, &.selected{
+        color: #e5ce00;
+        background: #333;
+      }
+    }
+  }
+
+  &-message{
+    line-height: 40px;
+  }
+}

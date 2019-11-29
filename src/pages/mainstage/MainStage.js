@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { Button } from '@/component/element/element';
 import Combat from './combat/Combat';
+import Message from './message/Message';
+import Option from './option/Option';
+import Move from './Move';
+import Map from './map/Map';
+import Status from "./status/Status";
 import './MainStage.scss';
 
 class MainStage extends Component {
     state = {
-        phase: 0,
-        event: {},
+        phase: 1,
         hero: {},
+        event: {},
+        map: [],
+        message: '',
         ready: false,
     };
 
@@ -26,11 +32,23 @@ class MainStage extends Component {
             .then(res => res.json())
             .then(res => {
                 if (res.success){
-                    this.setState({hero: res.hero, ready: true});
-                    if (res.event.name === 'enemy'){
-                        this.setState({phase: 1, event: res.event});
-                    } else if (res.event.name === 'win'){
-                        this.setState({phase: 0, event: {}});
+                    let data = res.data;
+                    this.setState({hero: data.hero, ready: true});
+                    if (data.map){
+                        this.setState({map: data.map});
+                    }
+                    if (data.event.name === 'enemy'){
+                        this.setState({phase: 2, event: data.event});
+                    } else if (data.event.name === 'message'){
+                        this.setState({phase: 0, event: data.event});
+                    } else if (data.event.name === 'option'){
+                        this.setState({phase: 3, event: data.event});
+                    } else if (data.event.name === 'start'){
+                        this.setState({phase: 1, event: data.event});
+                    } else if (data.event.name === 'move'){
+                        this.setState({phase: 1, event: data.event});
+                    } else{
+                        console.log('error on event name');
                     }
                 }
             })
@@ -40,19 +58,27 @@ class MainStage extends Component {
         return (
             <div className='as-ms'>
                 <div className='stage'>
+                    <div style={{padding: '6px 10px'}}>
+                        <Status hero={this.state.hero}/>
+                    </div>
+                    <Map map={this.state.map}/>
                     <div className='action-menu absolute-mid'>
                         {this.state.phase === 0 &&
-                        <Button onClick={()=>this.onAction('newroom')}>前进</Button>
+                        <Message ready={this.state.ready} msg={this.state.event.msg}
+                                 onAction={(act)=>this.onAction(act)}/>
                         }
                         {this.state.phase === 1 &&
-                        <Combat ready={this.state.ready}
-                                event={this.state.event.enemy} onAction={(act)=>this.onAction(act)}/>
+                        <Move ready={this.state.ready} event={this.state.event}
+                              onAction={(act)=>this.onAction(act)}/>
                         }
-                    </div>
-                    <div>
-                        Hero Attributes
-                        <div>血量:{this.state.hero.hp}</div>
-                        <div>攻击力:{this.state.hero.attack}</div>
+                        {this.state.phase === 2 &&
+                        <Combat ready={this.state.ready} event={this.state.event.enemy}
+                                onAction={(act)=>this.onAction(act)}/>
+                        }
+                        {this.state.phase === 3 &&
+                        <Option ready={this.state.ready} msg={this.state.event.msg}
+                                option={this.state.event.options} onAction={(act)=>this.onAction(act)}/>
+                        }
                     </div>
                 </div>
             </div>
