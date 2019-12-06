@@ -3,6 +3,10 @@
     width: 40px;
     height: 40px;
     overflow: hidden;
+    &.act{
+      top: 0;
+      left: 0;
+    }
     &.t{
       top: -40px;
     }

@@ -50,6 +50,14 @@ class Move extends Component {
                                 )
                         })
                     }
+                    {this.props.event.act &&
+                    <div className={`absolute-mid border move-btn act`}>
+                        <Button onClick={()=>this.onAction('act')}
+                                style={{padding: 6, width: "100%", height: "100%"}}>
+                            搜索
+                        </Button>
+                    </div>
+                    }
                 </div>
                 }
             </div>

@@ -4,7 +4,7 @@ import './Register.scss';
 
 class Register extends Component {
     state = {
-        show: false,
+        showModal: false,
         username: '',
         password: '',
     };
@@ -13,6 +13,8 @@ class Register extends Component {
     };
 
     requestRegister = () => {
+        this.setState({showModal: true});
+        return;
         let formData = new FormData();
         formData.append('username', this.state.username);
         formData.append('password', this.state.password);
@@ -41,7 +43,7 @@ class Register extends Component {
 
     closeModal = () => {
         this.setState({
-            show: false,
+            showModal: false,
         })
     };
 
@@ -69,7 +71,7 @@ class Register extends Component {
                         <Button onClick={this.back}>返回</Button>
                     </div>
                 </div>
-                <Modal display={this.state.show} onClose={this.closeModal}>
+                <Modal display={this.state.showModal} onClose={this.closeModal}>
                     <p>目前暂不开放注册，仅限邀请</p>
                 </Modal>
             </div>

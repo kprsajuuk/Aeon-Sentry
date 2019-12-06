@@ -38,6 +38,9 @@ class LoadCharacter extends Component {
     }
 
     confirmSelect = () => {
+        if (!this.state.selectedChar){
+            return;
+        }
         let formData = new FormData();
         formData.append('selectChar', this.state.selectedChar.getCharacterId())
         fetch(`/selectHero/`, {

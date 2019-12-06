@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import './Test.scss';
 
 class Test extends Component {
@@ -13,6 +14,23 @@ class Test extends Component {
     };
 
     componentDidMount(){
+        /*fetch(`/test/`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+            })*/
+        Axios.get('/test/')
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
     }
 
 

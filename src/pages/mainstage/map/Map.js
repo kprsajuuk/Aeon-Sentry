@@ -94,6 +94,10 @@ class Room extends Component {
                     {this.props.data.user &&
                         <div className='room-main-user absolute-mid'>&nbsp;</div>
                     }
+                    {this.props.data.act &&
+                        <div className='room-main-act absolute-mid'/>
+
+                    }
                     {
                         this.props.data.path.map((item, index) => {
                             return (<div key={index} className={'path ' + item}>&nbsp;</div>)
