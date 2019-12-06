@@ -20,7 +20,7 @@ class Message extends Component {
 
     onAction = (act) => {
         this.props.onAction(act);
-    }
+    };
 
     render(){
         return (

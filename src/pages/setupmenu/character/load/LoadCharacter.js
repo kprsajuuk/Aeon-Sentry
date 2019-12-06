@@ -26,7 +26,7 @@ class LoadCharacter extends Component {
                     })
                 }
             })
-    }
+    };
 
     onSelect = (item) => {
         if (this.state.selectedChar && this.state.selectedChar !== item){
@@ -35,14 +35,14 @@ class LoadCharacter extends Component {
         this.setState({
             selectedChar: item,
         })
-    }
+    };
 
     confirmSelect = () => {
         if (!this.state.selectedChar){
             return;
         }
         let formData = new FormData();
-        formData.append('selectChar', this.state.selectedChar.getCharacterId())
+        formData.append('selectChar', this.state.selectedChar.getCharacterId());
         fetch(`/selectHero/`, {
             method: 'post',
             body: formData,
@@ -52,14 +52,13 @@ class LoadCharacter extends Component {
                 if (res.success){
                     window.location.href="/floor";
                 }
-            })
-        return;
+            });
     };
 
     render(){
         return (
-            <div>
-                <div style={{marginBottom: 12}}>
+            <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+                <div style={{marginBottom: 12, overflow: 'auto'}}>
                     {
                         this.state.characters.map((item, index)=>{
                             return (<CharacterListItem data={item} key={index} onSelect={this.onSelect}/>)

@@ -1,0 +1,51 @@
+.as-tooltip{
+  display: inherit;
+  position: relative;
+  &-content{
+    display: inherit;
+  }
+  &:hover {
+    .tip{
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, -120%);
+      -ms-transform: translate(-50%, -120%);	  /* IE 9 */
+      -moz-transform: translate(-50%, -120%);	  /* Firefox */
+      -webkit-transform: translate(-50%, -120%); /* Safari 和 Chrome */
+      -o-transform: translate(-50%, -120%);      /* Opera */
+    }
+  }
+
+  & .tip{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 1;
+    background: #333;
+    min-width: 100px;
+    white-space: nowrap;
+
+    &:after {
+      display: block;
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      content: "";
+      border: 10px solid transparent;
+      border-bottom-width: 0;
+      transform: translate(-50%, 100%);
+      border-top-color: #333;
+    }
+  }
+}

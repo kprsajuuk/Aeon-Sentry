@@ -19,11 +19,10 @@ class CharacterListItem extends Component {
         }
     }
 
-    /**
-     *
-     * @param data {{avatar_id: string}} - 角色id
-     */
     getCharacterId(){
+        /**
+         * @param data {{avatar_id: string}} - 角色id
+         */
         return this.state.data.avatar_id;
     }
 
@@ -36,7 +35,7 @@ class CharacterListItem extends Component {
     onSelect = () => {
         this.setState({
             selected: true,
-        })
+        });
         this.props.onSelect(this)
     };
 
@@ -46,13 +45,11 @@ class CharacterListItem extends Component {
              * @param data {{defense: string, magic: string}} - 角色属性.
              */
             <div className={`cli${this.state.selected ? ' selected' : ''}`} onClick={this.onSelect}>
-                <div>{this.state.data.name}</div>
+                <div>名称: {this.state.data.name}</div>
                 <div className='cli-attr'>
-                    <div>攻: {this.state.data.attack}</div>
-                    <div>守: {this.state.data.defense}</div>
+                    <div>攻击: {this.state.data.attack}</div>
+                    <div style={{margin: '0 10px'}}>守: {this.state.data.defense}</div>
                     <div>速: {this.state.data.speed}</div>
-                    <div>范: {this.state.data.range}</div>
-                    <div>魔: {this.state.data.magic}</div>
                 </div>
             </div>
         )

@@ -20,7 +20,7 @@ class Move extends Component {
     };
 
     render(){
-        const { path } = this.state
+        const { path } = this.state;
         return (
             <div>
                 {this.props.event.name === 'start' &&

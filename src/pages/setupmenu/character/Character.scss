@@ -15,6 +15,9 @@
       padding: 12px;
       width: 50%;
       cursor: pointer;
+      &:hover{
+        background: #696969;
+      }
     }
   }
 }

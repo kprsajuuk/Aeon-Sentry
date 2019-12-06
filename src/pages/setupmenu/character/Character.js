@@ -5,7 +5,7 @@ import './Character.scss';
 
 class Character extends Component {
     state = {
-        tab: '',
+        tab: 'newChar',
     };
 
     componentDidMount(){
@@ -16,7 +16,7 @@ class Character extends Component {
     };
 
     loadHero = () => {
-        this.setState({tab: 'load'})
+        this.setState({tab: 'load'});
         this.loadChar.loadAllHero();
     };
 
@@ -27,7 +27,8 @@ class Character extends Component {
                     <div className='tab-button' onClick={this.buildHero}>新建角色</div>
                     <div className='tab-button' onClick={this.loadHero}>选择角色</div>
                 </div>
-                <div style={{display: this.state.tab === 'load' ? 'block' : 'none', marginTop: 16}}>
+                <div style={{display: this.state.tab === 'load' ? 'block' : 'none', marginTop: 16, minHeight: 0,
+                    width: '50vw'}}>
                     <LoadCharacter ref={(e)=>{this.loadChar=e}}/>
                 </div>
                 <div style={{display: this.state.tab === 'newChar' ? 'block' : 'none', flex: 1}}>

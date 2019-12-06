@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Button, NumberPicker, Input } from '@/component/element/element';
+import { Button, NumberPicker, Input, Tooltip } from '@/component/element/element';
 import './NewCharacter.scss';
 
-const infojson = [{title: '名称', data: ''}, {title: '年龄', data: ''}, {title: '婚姻状态', data: ''},
+const infojson = [{title: '年龄', data: ''}, {title: '婚姻状态', data: ''},
     {title: '托福成绩', data: ''},{title: '武器', data: ''}];
 
 class NewCharacter extends Component {
     state = {
         name: undefined,
-        totalPoint: 10,
-        attributes: {att: 3, def: 3, spe: 3, ran: 3, mag: 3},
+        totalPoint: 3,
+        attributes: {att: 3, def: 2, spe: 2},
     };
 
     componentDidMount(){
@@ -40,8 +40,6 @@ class NewCharacter extends Component {
         formData.append('attack', attributes.att);
         formData.append('defense', attributes.def);
         formData.append('speed', attributes.spe);
-        formData.append('range', attributes.ran);
-        formData.append('magic', attributes.mag);
         formData.append('comment', 'something here');
         fetch(`/createHero/`, {
             method: 'post',
@@ -72,20 +70,16 @@ class NewCharacter extends Component {
                             <NumberPicker value={attributes.att} attr='att' onChange={this.numberUpdate}/>
                         </div>
                         <div className='as-nc-attr'>
-                            <span>守</span>
-                            <NumberPicker value={attributes.def} attr='def' onChange={this.numberUpdate}/>
+                            <Tooltip tip='每点守增加五点生命'>
+                                <span>守</span>
+                                <NumberPicker value={attributes.def} attr='def' onChange={this.numberUpdate}/>
+                            </Tooltip>
                         </div>
                         <div className='as-nc-attr'>
-                            <span>速</span>
-                            <NumberPicker value={attributes.spe} attr='spe' onChange={this.numberUpdate}/>
-                        </div>
-                        <div className='as-nc-attr'>
-                            <span>范</span>
-                            <NumberPicker value={attributes.ran} attr='ran' onChange={this.numberUpdate}/>
-                        </div>
-                        <div className='as-nc-attr'>
-                            <span>魔</span>
-                            <NumberPicker value={attributes.mag} attr='mag' onChange={this.numberUpdate}/>
+                            <Tooltip tip='最大闪避次数'>
+                                <span>速</span>
+                                <NumberPicker value={attributes.spe} attr='spe' onChange={this.numberUpdate}/>
+                            </Tooltip>
                         </div>
                     </div>
                     <div style={{padding: 16}}>
