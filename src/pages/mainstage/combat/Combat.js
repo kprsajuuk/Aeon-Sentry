@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button } from '@/component/element/element';
-import './Combat.scss';
-import '../status/Status';
 import Status from "@/pages/mainstage/status/Status";
+import '../status/Status';
+import './Combat.scss';
 
 class Combat extends Component {
     state = {
@@ -28,7 +28,9 @@ class Combat extends Component {
         return (
             <div className='combat-main'>
                 <div className='combat-enemy'>
-                    <div className='combat-enemy-avatar'>MuyiShen boss专用图.jpg</div>
+                    <div className='combat-enemy-avatar'>
+                        <img style={{height: "100%", maxHeight: "40vh"}} src={require('@/assets/img/boss.png')}/>
+                    </div>
                     <div style={{padding: '0 10px'}}>
                         <Status hero={this.state.enemy}/>
                     </div>
