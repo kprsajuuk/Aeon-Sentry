@@ -3,6 +3,8 @@
   text-align: left;
   margin-bottom: 10px;
   cursor: pointer;
+  border: 1px solid #333;
+  position: relative;
   &:hover{
     color: #e5ce00;
   }
@@ -12,5 +14,11 @@
   }
   &-attr{
     display: flex;
+  }
+  &-edit{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 10px;
   }
 }

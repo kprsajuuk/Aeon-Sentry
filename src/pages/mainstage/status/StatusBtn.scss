@@ -1,0 +1,32 @@
+.statusBtn{
+  &-popup{
+    position: relative;
+    margin-top: 6px;
+    &-upgrade{
+      position: absolute;
+      padding: 6px;
+      background: #333;
+      & .card-option{
+        padding: 6px;
+        border: 1px solid #666;
+        cursor: pointer;
+        background: #a9a9a9;
+        color: #333;
+        &:hover{
+          background: #999;
+        }
+      }
+      &>.enable>.card-option{
+        background: #e5ce00;
+      }
+    }
+    &-info{
+      position: absolute;
+      padding: 6px;
+      background: #333;
+      & div{
+        padding: 6px;
+      }
+    }
+  }
+}

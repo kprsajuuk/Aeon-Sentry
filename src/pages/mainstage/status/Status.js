@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { exp_bound } from "@/preference/hero";
+import { Tooltip } from "@/component/element/element";
 import './Status.scss';
 
 class Status extends Component {
@@ -20,6 +22,9 @@ class Status extends Component {
 
     render(){
         const { hero } = this.state;
+        const dmg = (attack, charge) => {
+            return (Number(attack) + Number(charge)) * (Number(charge) + 1);
+        };
         return (
             <div className='hero-status'>
                 <div className='hero-title'>
@@ -27,14 +32,17 @@ class Status extends Component {
                     <div className='hero-lv'>Lv{hero.lv}</div>
                 </div>
                 <div className='hero-hp border-2'>
-                    <div className='hero-hp-bar' style={{width: `${100*Math.min(hero.hp/hero.max_hp, 1)}%`}}>
-                        血量:{hero.hp}
+                    <div className='hero-hp-bar' style={{width: `${100*Math.min(Math.max(hero.hp, 0)/hero.max_hp, 1)}%`}}>
+                        血量:{Math.max(hero.hp, 0)}
                     </div>
                 </div>
+                {(hero.exp || hero.exp === 0) &&
+                    <div className='hero-exp-bar' style={{width: 100*hero.exp/exp_bound()[hero.lv+1] + '%'}}> </div>
+                }
                 <div className='hero-attr'>
-                    <div>攻击力:{hero.attack}</div>
+                    <Tooltip tip={`伤害： ${dmg(hero.attack, hero.charge)}`}><div>攻击力:{hero.attack}</div></Tooltip>
                     <div>蓄力:{hero.charge}</div>
-                    <div>体力:{hero.stamina}</div>
+                    <div>体力:{hero.stamina}/{hero.max_stamina}</div>
                 </div>
                 <div className='hero-des'>{hero.description}</div>
             </div>

@@ -14,7 +14,9 @@ class Modal extends Component {
         /**
          * @param props {{onClose: function}} - 角色id
          */
-        this.props.onClose();
+        if (this.props.onClose){
+            this.props.onClose();
+        }
     };
 
     render(){

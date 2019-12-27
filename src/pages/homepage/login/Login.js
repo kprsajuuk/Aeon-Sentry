@@ -32,7 +32,7 @@ class Login extends Component {
             .then(res => res.json())
             .then(res => {
                 if (res.success){
-                    setTimeout(()=>{this.props.history.push('/setup')},1000);
+                    setTimeout(()=>{this.props.history.push('/setup')},100);
                 } else {
                     this.setState({
                         showModal: true,

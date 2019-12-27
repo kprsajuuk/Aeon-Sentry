@@ -5,7 +5,9 @@ import Option from './option/Option';
 import Move from './Move';
 import Map from './map/Map';
 import Status from "./status/Status";
+import StatusBtn from "./status/StatusBtn";
 import './MainStage.scss';
+import {Modal} from "@/component/element/element";
 
 class MainStage extends Component {
     state = {
@@ -15,11 +17,30 @@ class MainStage extends Component {
         map: [],
         message: '',
         ready: false,
+        lost: false,
     };
 
     componentDidMount(){
         this.onAction('requestLatest');
     }
+
+    onUpgrade = (upgrade) => {
+        let formData = new FormData();
+        formData.append('type', upgrade.type);
+        formData.append('num', upgrade.num);
+        fetch(`/upgrade/`, {
+            method: 'post',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success && res.hero){
+                    this.setState({
+                        hero: res.hero,
+                    })
+                }
+            })
+    };
 
     onAction = (action) => {
         this.setState({ready: false});
@@ -47,6 +68,14 @@ class MainStage extends Component {
                         this.setState({phase: 1, event: data.event});
                     } else if (data.event.name === 'move'){
                         this.setState({phase: 1, event: data.event});
+                    } else if (data.event.name === 'win'){
+                        this.setState({phase: 0, event: data.event, win: true});
+                    } else if (data.event.name === 'journey_end'){
+                        if (data.event.journey === "win"){
+                            this.setState({win: true});
+                        } else if (data.event.journey === "lost"){
+                            this.setState({lost: true});
+                        }
                     } else{
                         console.log('error on event name');
                     }
@@ -60,6 +89,7 @@ class MainStage extends Component {
                 <div className='stage'>
                     <div style={{padding: '6px 10px'}}>
                         <Status hero={this.state.hero}/>
+                        <StatusBtn onUpgrade={this.onUpgrade} hero={this.state.hero}/>
                     </div>
                     <Map map={this.state.map}/>
                     <div className='action-menu absolute-mid'>
@@ -81,6 +111,15 @@ class MainStage extends Component {
                         }
                     </div>
                 </div>
+                <Modal display={this.state.lost}>
+                    <p style={{marginBottom: 12}}>你输了</p>
+                    <a style={{border: "1px solid #333", padding: 6}} className='border' href='/setup'>返回角色创建页面</a>
+                </Modal>
+                <Modal display={this.state.win}>
+                    <p style={{marginBottom: 12}}>恭喜你 打败了本层boss</p>
+                    <p style={{marginBottom: 12}}>目前测试版只设置了一层</p>
+                    <a style={{border: "1px solid #333", padding: 6}} className='border' href='/setup'>返回角色创建页面</a>
+                </Modal>
             </div>
         )
     }

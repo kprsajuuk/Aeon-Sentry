@@ -21,6 +21,11 @@
       color: #f0f8ff;
     }
   }
+  &-exp-bar{
+    height: 6px;
+    background: yellow;
+    width: 100%;
+  }
   &-attr{
     display: flex;
     justify-content: space-between;

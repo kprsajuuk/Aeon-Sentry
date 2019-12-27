@@ -39,6 +39,10 @@ class CharacterListItem extends Component {
         this.props.onSelect(this)
     };
 
+    onDelete = () => {
+        this.props.onDelete(this.state.data.avatar_id);
+    };
+
     render(){
         return (
             /**
@@ -50,6 +54,9 @@ class CharacterListItem extends Component {
                     <div>攻击: {this.state.data.attack}</div>
                     <div style={{margin: '0 10px'}}>守: {this.state.data.defense}</div>
                     <div>速: {this.state.data.speed}</div>
+                </div>
+                <div className='cli-edit'>
+                    <div onClick={this.onDelete}>删除</div>
                 </div>
             </div>
         )

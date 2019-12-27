@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { Button, NumberPicker, Input, Tooltip } from '@/component/element/element';
 import './NewCharacter.scss';
 
-const infojson = [{title: '年龄', data: ''}, {title: '婚姻状态', data: ''},
-    {title: '托福成绩', data: ''},{title: '武器', data: ''}];
-
 class NewCharacter extends Component {
     state = {
         name: undefined,
         totalPoint: 3,
         attributes: {att: 3, def: 2, spe: 2},
+        infoData: [{title: '年龄', data: ''}, {title: '婚姻状态', data: ''}, {title: '托福成绩', data: ''},
+            {title: '武器', data: ''}],
     };
 
     componentDidMount(){
@@ -33,6 +32,12 @@ class NewCharacter extends Component {
         })
     };
 
+    infoUpdate = (index, value) => {
+        let { infoData } = this.state;
+        infoData[index].data = value;
+        this.setState({infoData});
+    };
+
     complete = () => {
         const { attributes } = this.state;
         let formData = new FormData();
@@ -40,7 +45,7 @@ class NewCharacter extends Component {
         formData.append('attack', attributes.att);
         formData.append('defense', attributes.def);
         formData.append('speed', attributes.spe);
-        formData.append('comment', 'something here');
+        formData.append('comment', this.state.infoData);
         fetch(`/createHero/`, {
             method: 'post',
             body: formData,
@@ -52,7 +57,6 @@ class NewCharacter extends Component {
                  */
                 if (data.success){
                     this.props.onComplete();
-                    console.log('success');
                 }
             })
     };
@@ -76,7 +80,7 @@ class NewCharacter extends Component {
                             </Tooltip>
                         </div>
                         <div className='as-nc-attr'>
-                            <Tooltip tip='最大闪避次数'>
+                            <Tooltip tip='最大体力，决定闪避次数'>
                                 <span>速</span>
                                 <NumberPicker value={attributes.spe} attr='spe' onChange={this.numberUpdate}/>
                             </Tooltip>
@@ -90,13 +94,13 @@ class NewCharacter extends Component {
                                 <Input onChange={this.nameUpdate} style={{width: 100}}/>
                             </div>
                         {
-                            infojson.map((item, index) => {
+                            this.state.infoData.map((item, index) => {
                                 return (
                                     <div key={index} className='as-nc-info'>
                                         <span style={{paddingRight: 12}}>{item.title}</span>
-                                        <Input style={{width: 100}}/>
+                                        <Input onChange={(v)=>this.infoUpdate(index, v)} style={{width: 100}}/>
                                     </div>
-                                    )
+                                )
                             })
                         }
                         </div>

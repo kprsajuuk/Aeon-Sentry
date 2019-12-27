@@ -41,7 +41,7 @@ class Move extends Component {
                                     </Button>
                                     }
                                     {path.indexOf(item) >= 0 &&
-                                    <Button onClick={()=>this.onAction(item)}
+                                    <Button disabled={!this.props.ready} onClick={()=>this.onAction(item)}
                                             style={{padding: 6, width: "100%", height: "100%"}}>
                                         {json[item]}
                                     </Button>
@@ -52,7 +52,7 @@ class Move extends Component {
                     }
                     {this.props.event.act &&
                     <div className={`absolute-mid border move-btn act`}>
-                        <Button onClick={()=>this.onAction('act')}
+                        <Button disabled={!this.props.ready} onClick={()=>this.onAction('act')}
                                 style={{padding: 6, width: "100%", height: "100%"}}>
                             搜索
                         </Button>

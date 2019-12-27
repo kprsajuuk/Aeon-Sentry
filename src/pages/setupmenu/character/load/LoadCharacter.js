@@ -37,6 +37,23 @@ class LoadCharacter extends Component {
         })
     };
 
+    deleteHero = (id) => {
+        let formData = new FormData();
+        formData.append('avatarId', id);
+        fetch('/deleteHero/', {
+            method: 'post',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success){
+                    this.loadAllHero();
+                } else {
+                    console.log(res.msg);
+                }
+            })
+    };
+
     confirmSelect = () => {
         if (!this.state.selectedChar){
             return;
@@ -61,7 +78,8 @@ class LoadCharacter extends Component {
                 <div style={{marginBottom: 12, overflow: 'auto'}}>
                     {
                         this.state.characters.map((item, index)=>{
-                            return (<CharacterListItem data={item} key={index} onSelect={this.onSelect}/>)
+                            return (<CharacterListItem data={item} key={index} onDelete={this.deleteHero}
+                                                       onSelect={this.onSelect}/>)
                         })
                     }
                 </div>

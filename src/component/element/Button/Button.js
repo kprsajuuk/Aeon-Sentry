@@ -10,7 +10,7 @@ class Button extends Component {
     }
 
     clickAction = () => {
-        if (!this.props.disabled){
+        if (!this.props.disabled && this.props.onClick){
             this.props.onClick()
         }
     }
@@ -18,7 +18,7 @@ class Button extends Component {
     render(){
         const { disabled } = this.props
         return (
-            <div className='as-btn'
+            <div className={`as-btn${' '+this.props.className}`}
                  style={{...this.props.style, opacity: disabled ? 0.5 : 1,
                             cursor: disabled ? 'default' : 'pointer'}}
                  onClick={this.clickAction}>
